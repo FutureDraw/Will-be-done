@@ -1,0 +1,73 @@
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== STARS BACKGROUND ===== */
+
+#stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-body {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== GLITCH ===== */
+
+.glitch-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.glitch {
+    position: relative;
+    font-size: 120px;
+    font-weight: 700;
+    color: #F5F5DC;
+    letter-spacing: 5px;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.glitch::before {
+    color: #ffffff;
+    animation: glitchTop 3s infinite;
+}
+
+.glitch::after {
+    color: #888;
+    animation: glitchBottom 3s infinite;
+}
+
+@keyframes glitchTop {
+    0% { transform: translate(0); }
+    10% { transform: translate(-5px, -3px); }
+    20% { transform: translate(5px, 3px); }
+    30% { transform: translate(-3px, 2px); }
+    40% { transform: translate(3px, -2px); }
+    50% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+    0% { transform: translate(0); }
+    10% { transform: translate(5px, 3px); }
+    20% { transform: translate(-5px, -3px); }
+    30% { transform: translate(3px, -2px); }
+    40% { transform: translate(-3px, 2px); }
+    50% { transform: translate(0); }
+    100% { transform: translate(0); }
+}

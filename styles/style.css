@@ -1,0 +1,241 @@
+/* ===== ОСНОВА ===== */
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #000000;
+    color: #F5F5DC;
+    padding-top: 70px;
+}
+
+.hero,
+.section,
+.footer,
+.has-background-light {
+    background-color: #000000 !important;
+}
+
+/* ===== ТЕКСТ ===== */
+
+.title,
+.subtitle,
+h1, h2, h3, h4, h5, h6,
+p {
+    color: #f8f8f0 !important;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+    background-color: #000000 !important;
+    border-bottom: 1px solid #222;
+}
+
+.navbar-item {
+    color: #F5F5DC !important;
+}
+
+.navbar-item:hover {
+    background-color: #111 !important;
+    color: #ffffff !important;
+}
+
+/* ===== КАРТИНКИ ===== */
+
+.image-placeholder {
+    background: #111;
+    border: 1px solid #222;
+    height: 250px;
+    border-radius: 6px;
+}
+
+.custom-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ===== КНОПКИ ===== */
+
+.button.is-dark {
+    background-color: #2a2a2a !important;
+    color: #F5F5DC !important;
+    border: none;
+}
+
+.button.is-dark:hover {
+    background-color: #3a3a3a !important;
+}
+
+.button.is-outlined.is-dark {
+    border: 1px solid #444 !important;
+    color: #F5F5DC !important;
+    background-color: transparent !important;
+}
+
+.button.is-outlined.is-dark:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* ===== ФОРМА ===== */
+
+.input,
+.textarea {
+    background-color: #111 !important;
+    border: 1px solid #333 !important;
+    color: #F5F5DC !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #888;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: #555 !important;
+    box-shadow: none !important;
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+    border-top: 1px solid #222;
+    padding: 3rem 1.5rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.footer-left p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-right {
+    color: #444;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons img {
+    width: 28px;
+    margin-right: 15px;
+    filter: brightness(0.8);
+    transition: 0.3s ease;
+}
+
+.social-icons img:hover {
+    filter: brightness(1);
+}
+
+/* ===== АНИМАЦИЯ КНОПОК ===== */
+
+button {
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== Белая полоска перед разделом ===== */
+
+.section-divider {
+    width: 95%;
+    height: 2px;
+    background-color: #F5F5DC;
+    margin: 0 auto 3rem auto;
+}
+
+/* ===== АНИМАЦИЯ ТЕКСТА ===== */
+
+.changing-text {
+    display: inline-block;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== FAQ ===== */
+
+.faq-item {
+    border-bottom: 1px solid #222;
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #F5F5DC;
+    text-align: left;
+    padding: 1.2rem 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    color: #aaa;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* ===== CHECKBOX ===== */
+
+.checkbox input {
+    margin-right: 8px;
+    accent-color: #2a2a2a;
+}
+
+.checkbox {
+    color: #F5F5DC;
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #F5F5DC;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
