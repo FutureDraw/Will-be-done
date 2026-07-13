@@ -1,85 +1,93 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('feedbackForm');
+
     if (!form) return;
 
-    form.addEventListener('submit', function (event) {
+    const modal = document.getElementById('successModal');
+
+    const closeModal = document.getElementById('closeModal');
+
+    form.addEventListener('submit', async (event) => {
 
         event.preventDefault();
 
-        document.querySelectorAll('.is-danger').forEach(el => {
-            el.classList.remove('is-danger');
-        });
+        const fullname = document
+            .getElementById('fullname')
+            .value
+            .trim();
 
-        document.querySelectorAll('.help.is-danger').forEach(el => el.remove());
+        const email = document
+            .getElementById('email')
+            .value
+            .trim();
 
-        let isValid = true;
+        const company = document
+            .getElementById('company')
+            .value
+            .trim();
 
-        const fullname = document.getElementById('fullname');
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
-        const agreement = document.getElementById('agreement');
+        const message = document
+            .getElementById('message')
+            .value
+            .trim();
 
-        const fullnameValue = fullname.value.trim();
-        const emailValue = email.value.trim();
+        const agreement = document
+            .getElementById('agreement')
+            .checked;
 
-        if (fullnameValue === '' || fullnameValue.split(' ').length < 2) {
-            showError(fullname, 'Введите имя и фамилию');
-            isValid = false;
+        if (
+            !fullname ||
+            !email ||
+            !message ||
+            !agreement
+        ) {
+
+            alert('Заполните все обязательные поля');
+
+            return;
         }
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        try {
 
-        if (emailValue === '') {
-            showError(email, 'Введите email');
-            isValid = false;
-        } else if (!emailPattern.test(emailValue)) {
-            showError(email, 'Введите корректный email');
-            isValid = false;
-        }
+            const response = await fetch(
+                'http://localhost:3000/api/contact',
+                {
+                    method: 'POST',
 
-        if (!agreement.checked) {
-            alert('Необходимо согласие на обработку данных');
-            isValid = false;
-        }
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
 
-        if (isValid) {
+                    body: JSON.stringify({
+                        fullname,
+                        email,
+                        company,
+                        message
+                    })
+                }
+            );
 
-            const formData = {
-                fullname: fullnameValue,
-                email: emailValue,
-                company: document.getElementById('company').value.trim() || '(не указано)',
-                message: message.value.trim() || '(без сообщения)'
-            };
+            if (!response.ok) {
+                throw new Error();
+            }
 
-            const customEvent = new CustomEvent('formValid', { detail: formData });
-            document.dispatchEvent(customEvent);
-
-            const modal = document.getElementById('successModal');
             modal.classList.add('active');
 
             form.reset();
+
+        } catch {
+
+            alert('Ошибка отправки заявки');
+
         }
 
     });
 
-    function showError(input, message) {
-        input.classList.add('is-danger');
+    closeModal.addEventListener('click', () => {
 
-        const help = document.createElement('p');
-        help.classList.add('help', 'is-danger');
-        help.textContent = message;
+        modal.classList.remove('active');
 
-        input.parentNode.appendChild(help);
-    }
-
-    const closeModalBtn = document.getElementById('closeModal');
-    const modal = document.getElementById('successModal');
-
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function () {
-            modal.classList.remove('active');
-        });
-    }
+    });
 
 });
